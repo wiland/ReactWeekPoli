@@ -13,8 +13,15 @@ body {
 }
 
 .card-badge {
+    margin: 0 5px;
+}
+
+.card-tags {
+    position: absolute;
+    bottom: 5px;
+    padding: 5px;
+}
+
+.card-img-container {
     position: relative;
-    top: -45px;
-    margin: 0 10px;
-    width: min-content;
 }
