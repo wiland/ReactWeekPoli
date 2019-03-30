@@ -1,16 +1,39 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import Header from './Header';
+import Events from './Events';
+import { getCategories, getEvents } from '../api/events';
 
 export default class Main extends Component {
-  static propTypes = {
-    prop: PropTypes
+  state = {
+    categories: [],
+    events: null,
+    isLoading: false
+  }
+
+  async componentDidMount() {
+    const categories = await getCategories();
+    this.setState({
+      categories
+    })
+  }
+
+  searchEvent = async (category, query) => {
+    this.setState({
+      isLoading: true
+    })
+    const events = await getEvents(category, query);
+    this.setState({
+      events,
+      isLoading: false
+    })
   }
 
   render() {
     return (
-      <div>
-        
-      </div>
+      <div className="container">
+				<Header categories={this.state.categories} searchEvent={this.searchEvent} isLoading={this.state.isLoading}/>
+        <Events events={this.state.events}/>
+			</div>
     )
   }
 }

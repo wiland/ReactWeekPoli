@@ -1,0 +1,20 @@
+html,
+body {
+    overflow-x: hidden;
+    /* Prevent scroll on narrow devices */
+}
+
+body {
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 760px;
+}
+
+.card-badge {
+    position: relative;
+    top: -45px;
+    margin: 0 10px;
+    width: min-content;
+}
