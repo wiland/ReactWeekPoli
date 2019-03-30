@@ -9,7 +9,7 @@ export default class Dates extends Component {
       <div className="col-md-5 order-md-2 mb-4">
         <Badge datesCounter={this.props.dates.length} />
         <ul className="list-group mb-3">
-          {this.props.dates.map(date => <Date key={date.id} date={date}/>)}
+          {this.props.dates.map(date => <Date key={date.id} date={date} deleteDate={this.props.deleteDate}/>)}
         </ul>
       </div>
     );

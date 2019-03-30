@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Date = ({date}) => {
+const Date = ({date, deleteDate}) => {
 
   return (
     <li className="list-group-item d-flex justify-content-between lh-condensed">
@@ -9,7 +9,10 @@ const Date = ({date}) => {
         <h6 className="my-0">{`${date.name} ${date.lastName}`}</h6>
         <small className="text-muted">{`${date.date} - ${date.time}`}</small>
       </div>
-      <span className="text-muted">Prioridad {date.priority}</span>
+      <div className="d-flex flex-column align-items-end">
+        <span className="my-0 text-muted">Prioridad {date.priority}</span>
+        <button className="btn btn-sm btn-outline-danger" onClick={e => deleteDate(date.id)}>Eliminar</button>
+      </div>
     </li>
   );
 }

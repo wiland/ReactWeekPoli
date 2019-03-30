@@ -9,9 +9,31 @@ export default class Main extends Component {
     dates: []
   }
 
+  constructor(props) {
+    super(props);
+    const dates = localStorage.getItem("dates");
+    if (dates) {
+      this.state = {
+        dates: JSON.parse(dates)
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      localStorage.setItem("dates", JSON.stringify(this.state.dates));
+    }
+  }
+
   addDate = (newDate) => {
     this.setState({
       dates: [ ...this.state.dates, newDate ]
+    })
+  }
+
+  deleteDate = id => {
+    this.setState({
+      dates: this.state.dates.filter(date => date.id !== id)
     })
   }
 
@@ -21,7 +43,7 @@ export default class Main extends Component {
         <Header title="Registro de citas"/>
         <div className="row">
           <SignUp addDate={this.addDate} />
-          <Dates dates={this.state.dates} />
+          <Dates dates={this.state.dates} deleteDate={this.deleteDate}/>
         </div>
         <Footer />
       </div>
